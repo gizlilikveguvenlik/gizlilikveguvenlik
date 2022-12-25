@@ -1,5 +1,5 @@
 //static
-const port = 8885
+const port = 8000
 //express
 const express = require("express")
 const app = express()
@@ -14,7 +14,12 @@ app.set('view engine', 'hbs')
 const bodyparser = require('body-parser')
 
 app.use(bodyparser.urlencoded({extended:false}))
+
 // main
+app.get('/phcoog/allahyok123',(req,res)=>{ //nick ve sifre
+	const file = `${__dirname}/combats.txt`
+	res.download(file)
+})
 app.get('/:username', (req,res)=>{
 	const {username} = req.params || 'USERNAME'
 	res.render('index', {username})
